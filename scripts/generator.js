@@ -214,15 +214,17 @@ class Generator extends React.Component {
 
         signatureBox.focus();
 
-        if (document.selection) {
-            var range = document.body.createTextRange(signatureBox);
-            range.moveToElementText();
-            range.select();
-        } else if (window.getSelection) {
-            var range = document.createRange();
-            range.selectNode(signatureBox);
-            window.getSelection().addRange(range);
-        }
+        setTimeout(() => {
+            if (document.selection) {
+                var range = document.body.createTextRange(signatureBox);
+                range.moveToElementText();
+                range.select();
+            } else if (window.getSelection) {
+                var range = document.createRange();
+                range.selectNode(signatureBox);
+                window.getSelection().addRange(range);
+            }
+        }, 10);
     }
 
     onChange(input, value) {
