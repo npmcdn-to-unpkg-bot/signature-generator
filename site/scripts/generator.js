@@ -199,15 +199,15 @@ class Generator extends React.Component {
                     <p key="logo">
                         <a href="http://www.leoinnovationlab.com">
                             <img
-                                src="https://lh3.google.com/u/0/d/0B9f8ZRdsj6klZjdlaGNhV0RlNjQ=w3867-h3181-k-iv1?v=1470044354000"
+                                src="https://leo-public-files.s3.amazonaws.com/leoilab-email-signature.png"
                                 alt="LEO Innovation Lab"
                                 title="LEO Innovation Lab"
-                                width="200"
-                                height="51"
+                                width="165"
+                                height="43"
                                 style={{
                                     border: 0,
-                                    width: "200px",
-                                    height: "51px",
+                                    width: "165px",
+                                    height: "43px",
                             }} />
                         </a>
                         <span style={{
