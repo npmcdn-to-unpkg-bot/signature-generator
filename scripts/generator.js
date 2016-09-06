@@ -1,5 +1,5 @@
 const LEO_LOGO_URI = "https://leo-public-files.s3.amazonaws.com/leoilab-email-signature.png";
-const LEO_COLOR    = "#dd574d";
+const LEO_COLOR    = "#ff675c";
 
 class Input extends React.Component {
     constructor() {
