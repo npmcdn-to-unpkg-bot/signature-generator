@@ -1,4 +1,4 @@
-const LEO_LOGO_URI = "https://lh3.google.com/u/0/d/0B9f8ZRdsj6klZjdlaGNhV0RlNjQ=w3867-h3181-k-iv1?v=1470044354000";
+const LEO_LOGO_URI = "https://leo-public-files.s3.amazonaws.com/leoilab-email-signature.png";
 const LEO_COLOR    = "#dd574d";
 
 class Input extends React.Component {
