@@ -141,90 +141,87 @@ class Generator extends React.Component {
 
     get _signatureBox() {
         return (
-            <table cellspacing="0" cellpadding="0" style={{
-                fontSize: "14px",
-                fontWeight: 200,
-                fontFamily: "Montserrat,'Helvetica Neue',Helvetica,Arial,sans-serif",
-                lineHeight: "14px",
-                letterSpacing: "0.015em",
-            }} id="signature-box">
-                <tbody>
-                    {(() => {
-                        var rows = [];
+            <div id="signature-box">
+                <table cellspacing="0" cellpadding="0" style={{
+                    fontSize: "14px",
+                    fontWeight: 200,
+                    fontFamily: "Montserrat,'Helvetica Neue',Helvetica,Arial,sans-serif",
+                    lineHeight: "14px",
+                    letterSpacing: "0.015em",
+                }}>
+                    <tbody>
+                        {(() => {
+                            var rows = [];
 
-                        if (this.state.name) {
-                            rows.push(
-                                <tr>
-                                    <td style={{fontWeight: 600}}>{this.state.name}</td>
-                                </tr>
-                            );
-                        }
-
-                        if (this.state.title) {
-                            rows.push(
-                                <tr>
-                                    <td>{this.state.title}</td>
-                                </tr>
-                            );
-                        }
-
-                        if (this.state.phone) {
-                            rows.push(
-                                <tr>
-                                    <td style={{color: LEO_COLOR}}>{this.state.phone}</td>
-                                </tr>
-                            );
-                        }
-
-                        if (this.state.location) {
-                            rows = rows.concat(this.state.location.map((entry, idx) => {
-                                return (
+                            if (this.state.name) {
+                                rows.push(
                                     <tr>
-                                        <td style={{color: LEO_COLOR, paddingTop: idx === 0 ? "8px" : 0}}>{entry}</td>
+                                        <td style={{fontWeight: 600}}>{this.state.name}</td>
                                     </tr>
                                 );
-                            }));
-                        }
+                            }
 
-                        rows.push((
-                            <tr>
-                                <td style={{paddingTop: "8px"}}>
-                                    <a href="http://www.leoinnovationlab.com" style={{color: LEO_COLOR}} target="_blank">
-                                        <img src={LEO_LOGO_URI} alt="LEO Innovation Lab" border="0" width="200" height="51" />
-                                    </a>
-                                </td>
-                            </tr>
-                        ));
+                            if (this.state.title) {
+                                rows.push(
+                                    <tr>
+                                        <td>{this.state.title}</td>
+                                    </tr>
+                                );
+                            }
 
-                        rows.push((
-                            <tr>
-                                <td style={{color: LEO_COLOR, fontSize: "12px"}}>www.leoinnovationlab.com</td>
-                            </tr>
-                        ));
+                            if (this.state.phone) {
+                                rows.push(
+                                    <tr>
+                                        <td style={{color: LEO_COLOR}}>{this.state.phone}</td>
+                                    </tr>
+                                );
+                            }
 
-                        return rows;
-                    })()}
-                </tbody>
-            </table>
+                            if (this.state.location) {
+                                rows = rows.concat(this.state.location.map((entry, idx) => {
+                                    return (
+                                        <tr>
+                                            <td style={{color: LEO_COLOR, paddingTop: idx === 0 ? "8px" : 0}}>{entry}</td>
+                                        </tr>
+                                    );
+                                }));
+                            }
+
+                            rows.push((
+                                <tr>
+                                    <td style={{paddingTop: "8px"}}>
+                                        <a href="http://www.leoinnovationlab.com" style={{color: LEO_COLOR}} target="_blank">
+                                            <img src={LEO_LOGO_URI} alt="LEO Innovation Lab" border="0" width="200" height="51" style={{width: "200px", height: "51px"}} />
+                                        </a>
+                                    </td>
+                                </tr>
+                            ));
+
+                            rows.push((
+                                <tr>
+                                    <td style={{color: LEO_COLOR, fontSize: "12px"}}>www.leoinnovationlab.com</td>
+                                </tr>
+                            ));
+
+                            return rows;
+                        })()}
+                    </tbody>
+                </table>
+            </div>
         );
     }
 
     onSelectClicked() {
         const signatureBox = document.getElementById("signature-box");
+        const selection = window.getSelection();
+        const range = document.createRange();
 
-        signatureBox.focus();
+        if (selection.rangeCount > 0) {
+            selection.removeAllRanges();
+        }
 
-        setTimeout(() => {
-            if (document.selection) {
-                var range = document.body.createTextRange(signatureBox);
-                range.moveToElementText();
-                range.select();
-            } else if (window.getSelection) {
-                var range = document.createRange();
-                range.selectNode(signatureBox);
-                window.getSelection().addRange(range);
-            }
-        }, 10);
+        range.selectNode(signatureBox);
+        selection.addRange(range);
     }
 
     onChange(input, value) {
