@@ -51,6 +51,10 @@ body > h1 {
 #container label {
   display: block;
   font-weight: 200;
+  margin-top: 10px;
+}
+#container label:first-child {
+  margin-top: 0;
 }
 #container label input,
 #container label select {

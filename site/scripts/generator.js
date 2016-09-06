@@ -1,3 +1,6 @@
+const LEO_LOGO_URI = "https://lh3.google.com/u/0/d/0B9f8ZRdsj6klZjdlaGNhV0RlNjQ=w3867-h3181-k-iv1?v=1470044354000";
+const LEO_COLOR    = "#dd574d";
+
 class Input extends React.Component {
     constructor() {
         super()
@@ -138,91 +141,71 @@ class Generator extends React.Component {
 
     get _signatureBox() {
         return (
-            <div style={{
+            <table cellspacing="0" cellpadding="0" style={{
                 fontSize: "14px",
                 fontWeight: 200,
                 fontFamily: "Montserrat,'Helvetica Neue',Helvetica,Arial,sans-serif",
-                lineHeight: "17px",
+                lineHeight: "14px",
                 letterSpacing: "0.015em",
             }} id="signature-box">
-            {(() => {
-                const result = [];
+                <tbody>
+                    {(() => {
+                        var rows = [];
 
-                if (this.state.name) {
-                    result.push((
-                        <p key="name" style={{
-                            fontWeight: 600,
-                            margin: 0,
-                        }}>{this.state.name}</p>
-                    ));
-                }
+                        if (this.state.name) {
+                            rows.push(
+                                <tr>
+                                    <td style={{fontWeight: 600}}>{this.state.name}</td>
+                                </tr>
+                            );
+                        }
 
-                if (this.state.title) {
-                    result.push((
-                        <p key="title" style={{
-                            margin: "0 0 2px",
-                        }}>{this.state.title}</p>
-                    ));
-                }
+                        if (this.state.title) {
+                            rows.push(
+                                <tr>
+                                    <td>{this.state.title}</td>
+                                </tr>
+                            );
+                        }
 
-                if (this.state.phone) {
-                    result.push((
-                        <p key="phone" style={{
-                            margin: "0 0 10px"
-                        }}>
-                            <a href="tel: +45 31 33 47 81" style={{
-                                color: "#dd574d",
-                                textDecoration: "none"
-                            }}>{this.state.phone}</a>
-                        </p>
-                    ));
-                }
+                        if (this.state.phone) {
+                            rows.push(
+                                <tr>
+                                    <td style={{color: LEO_COLOR}}>{this.state.phone}</td>
+                                </tr>
+                            );
+                        }
 
-                if (this.state.location) {
-                    const locationElements = this.state.location.map((entry, idx) => {
-                        const locationKey = `loc-${idx}`;
+                        if (this.state.location) {
+                            rows = rows.concat(this.state.location.map((entry, idx) => {
+                                return (
+                                    <tr>
+                                        <td style={{color: LEO_COLOR, paddingTop: idx === 0 ? "8px" : 0}}>{entry}</td>
+                                    </tr>
+                                );
+                            }));
+                        }
 
-                        return <span key={locationKey} style={{display: "block"}}>{entry}</span>
-                    });
+                        rows.push((
+                            <tr>
+                                <td style={{paddingTop: "8px"}}>
+                                    <a href="http://www.leoinnovationlab.com" style={{color: LEO_COLOR}} target="_blank">
+                                        <img src={LEO_LOGO_URI} alt="LEO Innovation Lab" border="0" width="200" height="51" />
+                                    </a>
+                                </td>
+                            </tr>
+                        ));
 
-                    result.push((
-                        <p key="location" style={{
-                            margin: "0 0 4px",
-                            color: "#dd574d",
-                        }}>
-                            {locationElements}
-                        </p>
-                    ));
-                }
+                        rows.push((
+                            <tr>
+                                <td style={{color: LEO_COLOR, fontSize: "12px"}}>www.leoinnovationlab.com</td>
+                            </tr>
+                        ));
 
-                result.push((
-                    <p key="logo">
-                        <a href="http://www.leoinnovationlab.com">
-                            <img
-                                src="https://lh3.google.com/u/0/d/0B9f8ZRdsj6klZjdlaGNhV0RlNjQ=w3867-h3181-k-iv1?v=1470044354000"
-                                alt="LEO Innovation Lab"
-                                title="LEO Innovation Lab"
-                                width="200"
-                                height="51"
-                                style={{
-                                    border: 0,
-                                    width: "200px",
-                                    height: "51px",
-                            }} />
-                        </a>
-                        <span style={{
-                            display: "block",
-                            color: "#dd574d",
-                            fontSize: "12px",
-                        }}>
-                            www.leoinnovationlab.com
-                        </span>
-                    </p>
-                ))
-
-                return result;
-            })()}
-            </div>
+                        return rows;
+                    })()}
+                </tbody>
+            </table>
         );
     }
 
