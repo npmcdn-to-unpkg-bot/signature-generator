@@ -84,6 +84,8 @@ class Generator extends React.Component {
             return arr[Math.floor(Math.random() * arr.length)];
         };
 
+        this.canCopy = document.queryCommandSupported("copy");
+
         this.onChange = this.onChange.bind(this);
         this.onSelectClicked = this.onSelectClicked.bind(this);
 
@@ -135,7 +137,8 @@ class Generator extends React.Component {
                 "Slow Runner",
             ]),
             phone: "+45 1234 5678",
-            location: this.locations["Copenhagen"]
+            location: this.locations["Copenhagen"],
+            selectButtonText: this.canCopy ? "Copy signature" : "Select signature",
         };
     }
 
@@ -199,7 +202,11 @@ class Generator extends React.Component {
 
                             rows.push((
                                 <tr>
-                                    <td style={{color: LEO_COLOR, fontSize: "12px"}}>www.leoinnovationlab.com</td>
+                                    <td style={{color: LEO_COLOR, fontSize: "12px"}}>
+                                        <a href="http://www.leoinnovationlab.com" style={{color: LEO_COLOR}} target="_blank">
+                                            www.leoinnovationlab.com
+                                        </a>
+                                    </td>
                                 </tr>
                             ));
 
@@ -222,6 +229,16 @@ class Generator extends React.Component {
 
         range.selectNode(signatureBox);
         selection.addRange(range);
+
+        try {
+            if (document.execCommand("copy", true)) {
+                this.setState({
+                    selectButtonText: "Signature copied!"
+                })
+            }
+        } catch(e) {
+
+        }
     }
 
     onChange(input, value) {
@@ -245,7 +262,7 @@ class Generator extends React.Component {
                 </div>
                 <div key="rightColumn" className="col">
                     {this._signatureBox}
-                    <a href="javascript:void(0)" className="selectButton" onClick={this.onSelectClicked}>Select signature</a>
+                    <a href="javascript:void(0)" className="selectButton" onClick={this.onSelectClicked}>{this.state.selectButtonText}</a>
                 </div>
             </div>
         );
