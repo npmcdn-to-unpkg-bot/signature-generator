@@ -1,0 +1,32 @@
+{
+  "name": "signature-generator",
+  "version": "0.1.0",
+  "description": "Simple signature generator for LEO Innovation Lab",
+  "main": "index.js",
+  "scripts": {
+    "publish": "node publish.js",
+    "dev": "node index.js"
+  },
+  "keywords": [
+    "leo",
+    "innovation",
+    "lab",
+    "signature",
+    "generator"
+  ],
+  "author": "LEO Innovation Lab",
+  "license": "MIT",
+  "devDependencies": {
+    "express": "^4.14.0",
+    "gh-pages": "^0.11.0",
+    "stylus": "^0.54.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leoilab/signature-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/leoilab/signature-generator/issues"
+  },
+  "homepage": "https://github.com/leoilab/signature-generator#readme"
+}

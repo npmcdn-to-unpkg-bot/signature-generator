@@ -1,0 +1,81 @@
+clearfix()
+  zoom 1
+  &:after
+  &:before
+    content ""
+    display table
+  &:after
+    clear both
+
+body
+    background darken(white, 3%)
+
+#container, body > h1
+    margin 0 auto
+    width 640px
+
+body > h1
+    margin 50px auto 20px auto
+
+    font 2.5rem/2.7rem "Myriad Set Pro", "Helvetica Neue", "Helvetica", "Arial", sans-serif
+    font-weight 800
+    text-align center
+
+#container
+    clearfix()
+    background white
+    padding 15px
+    font 1rem/1.1rem "Myriad Set Pro", "Helvetica Neue", "Helvetica", "Arial", sans-serif
+
+    div.col
+        float left
+        width 50%
+
+    a.selectButton
+        display block
+        margin 5px 0 0
+        padding 8px 5px
+
+        background #dd574d
+
+        color #fff
+        font-size 0.8rem
+        line-height 0.8rem
+
+        text-align center
+        text-decoration none
+        text-transform uppercase
+
+        &:hover
+            background lighten(#dd574d, 20%)
+
+        &:active
+            background darken(#dd574d, 5%)
+
+    label
+        display block
+        font-weight 200
+        margin-top 10px
+
+        &:first-child
+            margin-top 0
+
+        input, select
+
+            display block
+
+            background darken(white, 3%)
+            box-sizing border-box
+            border 0
+            border-bottom 2px solid darken(white, 10%)
+
+            font 1rem/1.1rem "Myriad Set Pro", "Helvetica Neue", "Helvetica", "Arial", sans-serif
+            font-weight 200
+            color lighten(black, 10%)
+            padding 5px 10px
+
+            width 80%
+            margin 5px 0
+
+            &:focus, &:active
+                outline 0
